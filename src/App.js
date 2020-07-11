@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment }from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+
+import Header from './components/Header/index';
+import Footer from './components/Footer/index';
+import Home from './pages/Home';
+import IpInfo from './pages/IpInfo';
+import CheckPing from './pages/CheckPing';
+import CheckHttp from './pages/CheckHttp';
+import CheckTcp from './pages/CheckTcp';
+import CheckUdp from './pages/CheckUdp';
+import CheckDns from './pages/CheckDns';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+        <Router>
+            <Header />
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/ip-info' exact component={IpInfo} />
+                <Route path='/check-ping' exact component={CheckPing} />
+                <Route path='/check-http' exact component={CheckHttp} />
+                <Route path='/check-tcp' exact component={CheckTcp} />
+                <Route path='/check-udp' exact component={CheckUdp} />
+                <Route path='/check-dns' exact component={CheckDns} />
+            </Switch>
+            <Footer />
+        </Router>
+    </Fragment>
   );
 }
 
